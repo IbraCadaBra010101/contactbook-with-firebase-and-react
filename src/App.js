@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import AddContact from './components/AddContact';
+import ContactList from './components/ContactList';
+// import ListContacts from './components/ListContacts';
 
+const App = () => {
+    const [contact, setContact] = useState(null);
+    // const [filterContacts, setFilterContact] = useState(null);
+
+    useEffect(() => {
+        const db = firebase.firestore().collection('contacts');
+        db.onSnapshot(snapShot => {
+            let contactList = [];
+            snapShot.forEach(doc => {
+                let obj = {
+                    ...doc.data(),
+                    id: doc.id,
+
+                };
+                contactList.push(obj);
+            });
+            setContact(contactList);
+        });
+    }, []);
+
+    // const filtering = e => {
+    //     setFilterContact(e.target.value)
+    // };
+    return (
+        <div>
+
+            <AddContact/>
+            <ContactList allContacts ={contact}/>
+
+
+        </div>
+    );
+};
 export default App;
