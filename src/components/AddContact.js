@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import 'firebase/firestore';
 import firebase from 'firebase/app';
+import Button from '@material-ui/core/Button';
 
 const AddContact = () => {
 
@@ -41,47 +42,54 @@ const AddContact = () => {
                 console.log('Error =>', error);
             });
     };
+    const form = {
+        color: 'black',
+        margin: 'auto',
+        top: '0',
+        right: '0',
+        bottom: '0',
+        left: '0',
+        width: '300px',
+        height: ' 240px',
+        backgroundColor: '#ccc',
+        borderRadius: '3px',
+    };
 
     return (
         <React.Fragment>
-            <label><h3>Add contact</h3></label>
-            <form>
-                <label>First name:</label>
+            <form style ={form} >
+                <label><h3>Add contact</h3></label>
                 <input type="text"
                        value={firstName}
                        onChange={e => updateForm(e)}
                        name="firstName"
                        required
                 />
-                <label>Last name:</label>
-                <input type="text"
+                 <input type="text"
                        value={lastName}
                        onChange={e => updateForm(e)}
                        name='lastName'
                        required
                 />
-                <label>Home address:</label>
-                <input type="text"
+                 <input type="text"
                        value={homeAddress}
                        onChange={e => updateForm(e)}
                        name="homeAddress"
                        required
                 />
-                <label>Phone Number:</label>
-                <input type="text"
+                 <input type="text"
                        value={phoneNumber}
                        onChange={e => updateForm(e)}
                        name="phoneNumber"
                        required
                 />
-                <label>Email address:</label>
-                <input type="text"
+                 <input type="text"
                        value={emailAddress}
                        onChange={e => updateForm(e)}
                        name="emailAddress"
                        required
                 />
-                <button onClick={handleAddContactClick}>Add contact!</button>
+                <Button onClick={handleAddContactClick}>Add contact</Button>
             </form>
         </React.Fragment>
     )

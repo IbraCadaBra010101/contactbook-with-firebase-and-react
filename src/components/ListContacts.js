@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import Button from '@material-ui/core/Button';
 
 const ListContacts = ({contact}) => {
 
@@ -82,17 +83,23 @@ const ListContacts = ({contact}) => {
                    onBlur={saveUpdated}/>
         );
     }
-
+    const contactCard = {
+        color: 'black',
+        margin: 'auto',
+        width: '300px',
+        height: ' 240px',
+        backgroundColor: '#ccc',
+        borderRadius: '3px',
+    };
     return (
-        <div>
-            .....................
+        <div style={contactCard}>
             <p>{editFirstName}</p>
             <p>{editLastName}</p>
             <p>{editHomeAddress}</p>
             <p>{editPhoneNumber}</p>
             <p>{editEmailAddress}</p>
-            <span onClick={update}>update contact</span>
-            <span onClick={deleteContact}>delete contact</span>
+            <Button color='primary' onClick={update}>update contact</Button>
+            <Button onClick={deleteContact}>delete contact</Button>
         </div>
     )
 };

@@ -4,7 +4,6 @@ import 'firebase/firestore';
 
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
-// import ListContacts from './components/ListContacts';
 
 const App = () => {
     const [contact, setContact] = useState(null);
@@ -26,17 +25,14 @@ const App = () => {
         });
     }, []);
 
-    // const filtering = e => {
-    //     setFilterContact(e.target.value)
-    // };
+
     return (
-        <div>
 
-            <AddContact/>
-            <ContactList allContacts ={contact}/>
+            <div>
+                < AddContact />
+                <ContactList allContacts={contact}/>
+            </div>
 
-
-        </div>
     );
 };
 export default App;
